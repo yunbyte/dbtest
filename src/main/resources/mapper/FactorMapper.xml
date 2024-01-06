@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunbyte.dbtest.mapper.FactorMapper">
+
+    <insert id="insert" parameterType="com.yunbyte.dbtest.dao.Factor1">
+        INSERT INTO FACTOR1(
+            CARD_NO, REGION ,BALANCE,
+            START_DATE,CHANGE_DATE,USERNAME
+        )
+        VALUES (
+            #{cardNo},#{region},#{balance},
+            sysdate,sysdate,#{username}
+        )
+    </insert>
+
+    <select id="selectBalByCardNo"  resultType="Double">
+        SELECT BALANCE FROM FACTOR1 WHERE CARD_NO=#{cardNo}
+    </select>
+
+    <select id="selectRegionByCardNo"  resultType="Integer">
+        SELECT REGION FROM FACTOR1 WHERE CARD_NO=#{cardNo}
+    </select>
+
+    <update id="updateBalance">
+        UPDATE FACTOR1 SET BALANCE=#{balance} WHERE CARD_NO=#{cardNo} AND REGION=#{region}
+    </update>
+
+</mapper>

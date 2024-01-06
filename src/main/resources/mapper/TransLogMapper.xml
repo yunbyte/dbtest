@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunbyte.dbtest.mapper.TransLogMapper">
+
+    <insert id="insert" parameterType="com.yunbyte.dbtest.dao.TransLog">
+        INSERT INTO TRANS_LOG(
+            REGION, SOURE_CARD_NO, DEST_CARD_NO,
+            BALANCE, CHANGE_DATE, USERNAME
+        )
+        VALUES (
+            #{region},#{soureCardNo},#{destCardNo},
+            #{balance},sysdate,#{username}
+        )
+    </insert>
+
+    <select id="selectLogAll" parameterType="Long" resultType="com.yunbyte.dbtest.dao.TransLog">
+        SELECT REGION,SOURE_CARD_NO,DEST_CARD_NO,BALANCE,CHANGE_DATE,USERNAME FROM TRANS_LOG
+        WHERE 1=1
+        <if test="soureCardNo != null and soureCardNo != '' or soureCardNo == 0 ">
+            AND SOURE_CARD_NO = #{soureCardNo}
+        </if>
+        <if test="destCardNo != null and destCardNo != '' or destCardNo == 0 ">
+            AND DEST_CARD_NO = #{destCardNo}
+        </if>
+        ORDER BY CHANGE_DATE DESC
+    </select>
+
+</mapper>

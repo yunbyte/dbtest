@@ -1,0 +1,10 @@
+
+#GET https://www.baidu.com
+
+#GET http://localhost:8080
+
+#GET http://localhost:8080/html
+GET http://localhost:8088/json?cityId=1
+
+###
+
